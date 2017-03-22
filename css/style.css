@@ -1,0 +1,34 @@
+.container {
+    background-image: url("http://www.indezine.com/powerpoint/freebackgrounds/templates/t_ind_3320a.jpg");
+    overflow: auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /*width: 100%;
+    height: 100%;*/
+}
+
+header {
+	opacity: .9;
+
+}
+
+#main-header {
+	font-size: 2em;
+	color: teal;
+}
+
+#sub-header {
+	font-size: 1em;
+	color: teal;
+}
+
+table, th, td, .panel-heading, .form-group {
+	border: solid, white, 1px;
+	color: teal;
+	font-size: 1em;
+}
+
+.panel {
+	opacity: 1;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>One-Way-Ticket Train Schedule</title>
+	
+    <!-- Added link to the jQuery Library -->
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+
+    <!-- Added a link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Days+One|Playfair+Display+SC|Sanchez|Yrsa" rel="stylesheet">
+
+    <!--Internal CSS Links-->
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+<div class = "container">
+<br>
+    <header class = "jumbotron">
+        <h1 id="main-header">One-Way-Ticket Real-Time Train Schedule</h1>
+        <br>
+        <small id="sub-header">The latest updates for your ticket out of here</small>
+    </header>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">Schedule</div>
+        <div class="panel-body">
+        <table class="table">
+            <tr>
+                <th>Train Name</th>
+                <th>Destination</th>
+                <th>Frequency</th>
+                <th>Next Arrival</th>
+                <th>Minutes Away</th>
+            </tr>
+            <!-- <tr>
+                <td id="name" placeholder="I'm Gone Express"></td>
+                <td id="destination" placeholder="Omaha"></td>
+                <td id="frequency" placeholder="52"></td>
+                <td id="next-arrival" placeholder="20:25"></td>
+                <td id="minutes-away" placeholder="10"></td>
+            </tr> -->
+        </table>
+        </div>
+    </div>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">Schedule</div>
+        <div class="panel-body">
+            <form>
+                <div class="form-group">
+                    <label for="train-name">Train</label>
+                    <input type="text" class="form-control" id="train-name" placeholder="Name of Train">
+                </div>
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input type="text" class="form-control" id="destination" placeholder="Destination of Train">
+                </div>
+                <div class="form-group">
+                    <label for="first-train-time">Time of First Arrival (HH:mm - military time)</label>
+                    <input type="datetime" class="form-control" id="first-train-time" placeholder="First Arrival Time">
+                </div>
+                <div class="form-group">
+                    <label for="frequency">Frequency (min)</label>
+                    <input type="number" class="form-control" id="frequency" placeholder="Frequency of Arrival">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="javascript/app.js">  
+</script>
+</body>
+</html>
