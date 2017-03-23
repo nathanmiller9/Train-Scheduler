@@ -15,58 +15,71 @@
   var database = firebase.database();
 
   var clickCounter = 0;
-  var trainName;
-  var destination;
-  var firstTrain;
-  var frequency;
 
-  $("#submit").on("click", function() {
+  $("#submit").on("click", function(event) {
 
       event.preventDefault();
 
-      // Add to clickCounter
-      clickCounter++;
-      trainName = $("#train-name").val();
-      destination = $("#destination").val();
-      firstTrain = $("#first-train-time").val();
-      frequency = $("#frequency").val();
-
-
-
+      var trainName = $("#train-name").val().trim();
+      var destination = $("#destination").val().trim();
+      var firstTrain = $("#first-train-time").val().trim();
+      var frequency = $("#frequency").val().trim();
 
       //  Store Click Data to Firebase in a JSON property called clickCount
       // Note how we are using the Firebase .set() method
-      database.ref().set({
-        clickCount: clickCounter;
-        trainName: trainName;
-        destination: destination;
-        firstTrain: firstTrain;
-        frequency: frequency;
-      });
+      var newTrain = {
+        fName: trainName,
+        fDest: destination,
+        fFirstTrain: firstTrain,
+        fFrequency: frequency
+      }
+
+      database.ref().push(newTrain);
+
+      console.log(newTrain.fName);
+      console.log(newTrain.fDest);
+      console.log(newTrain.fFirstTrain);
+      console.log(newTrain.fFrequency);
+
+      alert("Train successfully added");
+
+      $("#train-name").val("");
+      $("#destination").val("");
+      $("#first-train-time").val("");
+      $("#frequency").val("");
     });
 
-  database.ref().on("value", function(snapshot) {
+    //   database.ref().set({
+    //     clickCount: clickCounter
+    //     trainName: trainName
+    //     destination: destination
+    //     firstTrain: firstTrain
+    //     frequency: frequency
+    // });
+    
+
+  database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
       // Then we console.log the value of snapshot
-      console.log(snapshot.val());
+      console.log(childSnapshot.val());
 
       // Then we change the html associated with the number.
-      $("#click-value").html(snapshot.val().clickCount);
-      $("#train").html(snapshot.val().trainName);
-      $("dest").html(snapshot.val().destination);
-      $("first").html(snapshot.val().firstTrain);
-      $("freq").html(snapshot.val().frequency);
+      var trainName = childSnapshot.val().fName;
+      var destination = childSnapshot.val().fDest;
+      var firstTrain = childSnapshot.val().fFirstTrain;
+      var frequency = childSnapshot.val().fFrequency;
+
+      console.log(trainName);
+      console.log(destination);
+      console.log(firstTrain);
+      console.log(frequency);
 
       // Then update the clickCounter variable with data from the database.
-      clickCounter = snapshot.val().clickCount;
-
-    // If there is an error that Firebase runs into -- it will be stored in the "errorObject"
-    // Again we could have named errorObject anything we wanted.
-    }, function(errorObject) {
-
-      // In case of error this will print the error
-      console.log("The read failed: " + errorObject.code);
+     $("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" +
+  frequency + "</td><td>" + "first train" + "</td><td>" + "minutes away" + "</td><tr>");
     });
+
+  
 
 
 
