@@ -7,26 +7,29 @@
 }
 
 header {
-	opacity: .9;
-
+    opacity: .9;
 }
 
 #main-header {
-	font-size: 2em;
-	color: teal;
+    font-size: 2em;
+    color: teal;
 }
 
 #sub-header {
-	font-size: 1em;
-	color: teal;
+    font-size: 1em;
+    color: teal;
 }
 
-table, th, td, .panel-heading, .form-group {
-	border: solid, white, 1px;
-	color: teal;
-	font-size: 1em;
+table,
+th,
+td,
+.panel-heading,
+.form-group {
+    border: solid, white, 1px;
+    color: teal;
+    font-size: 1em;
 }
 
 .panel {
-	opacity: 1;
+    opacity: 1;
 }
