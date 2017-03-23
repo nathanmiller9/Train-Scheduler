@@ -24,15 +24,25 @@
       var destination = $("#destination").val().trim();
       var firstTrain = $("#first-train-time").val().trim();
       var frequency = $("#frequency").val().trim();
+      var firstTimeConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
+      var currentTime = moment().format("HH:mm");
+      var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+      var remainder = diffTime % frequency;
+      var minutesAway = frequency - remainder;
+      // var nextTrain = moment().add(minutesAway, "minutes");
 
-      //  Store Click Data to Firebase in a JSON property called clickCount
-      // Note how we are using the Firebase .set() method
+      console.log(trainName, destination, firstTrain, frequency, firstTimeConverted, currentTime, diffTime, remainder, minutesAway);
+
       var newTrain = {
         fName: trainName,
         fDest: destination,
+        fFrequency: frequency,
         fFirstTrain: firstTrain,
-        fFrequency: frequency
+        // fNext: nextTrain,
+        fAway: minutesAway
       }
+      console.log(newTrain);
+      // console.log(newTrain.nextTrain);
 
       database.ref().push(newTrain);
 
@@ -40,6 +50,9 @@
       console.log(newTrain.fDest);
       console.log(newTrain.fFirstTrain);
       console.log(newTrain.fFrequency);
+      console.log(newTrain.fNext);
+      console.log(newTrain.fAway);
+      
 
       alert("Train successfully added");
 
@@ -49,34 +62,31 @@
       $("#frequency").val("");
     });
 
-    //   database.ref().set({
-    //     clickCount: clickCounter
-    //     trainName: trainName
-    //     destination: destination
-    //     firstTrain: firstTrain
-    //     frequency: frequency
-    // });
-    
-
   database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
-      // Then we console.log the value of snapshot
+      // console.log the value of snapshot
       console.log(childSnapshot.val());
 
-      // Then we change the html associated with the number.
+      // change the html associated with the number.
       var trainName = childSnapshot.val().fName;
       var destination = childSnapshot.val().fDest;
       var firstTrain = childSnapshot.val().fFirstTrain;
+      var nextTrain = childSnapshot.val().fNext;
+      var minutesAway = childSnapshot.val().fAway;
       var frequency = childSnapshot.val().fFrequency;
 
       console.log(trainName);
       console.log(destination);
       console.log(firstTrain);
+      console.log(nextTrain);
+      console.log(minutesAway);
       console.log(frequency);
 
-      // Then update the clickCounter variable with data from the database.
+
+
+      // update the clickCounter variable with data from the database.
      $("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" +
-  frequency + "</td><td>" + "first train" + "</td><td>" + "minutes away" + "</td><tr>");
+  frequency + "</td><td>" + nextTrain + "</td><td>" + minutesAway + "</td><tr>");
     });
 
   
