@@ -29,20 +29,20 @@ $("#submit").on("click", function(event) {
     var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
     var remainder = diffTime % frequency;
     var minutesAway = frequency - remainder;
-    // var nextTrain = moment().add(minutesAway, "minutes");
+    var nextTrain = moment().add(minutesAway, "minutes").format("HH:mm");
 
-    console.log(trainName, destination, firstTrain, frequency, firstTimeConverted, currentTime, diffTime, remainder, minutesAway);
+    console.log(trainName, destination, firstTrain, frequency, firstTimeConverted, currentTime, diffTime, remainder, minutesAway, nextTrain);
 
     var newTrain = {
         fName: trainName,
         fDest: destination,
         fFrequency: frequency,
         fFirstTrain: firstTrain,
-        // fNext: nextTrain,
+        fNext: nextTrain,
         fAway: minutesAway
     }
     console.log(newTrain);
-    // console.log(newTrain.nextTrain);
+    console.log(newTrain.nextTrain);
 
     database.ref().push(newTrain);
 
