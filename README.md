@@ -22,4 +22,4 @@
 - Moment.js
 
 ## Code Explaination
-- Used HTML, Bootstrap, jQuery, Firebase, javaScript, and moment.js to create a real time train schedule.  Created an on-click functionto aapture the user data entered onto the webpage.  The data was then stored as an object in the firebase database. The data was then sent back from the database to the webpage to be displayed in a table.  Moment.js was used to calculate and display real-time data to show when trains were set to arrive.  
+- Used HTML, Bootstrap, jQuery, Firebase, javaScript, and moment.js to create a real time train schedule.  Created an on-click function to capture the user data entered onto the webpage.  The data was then stored as an object in the firebase database. The data was then sent back from the database to the webpage to be displayed in a table.  Moment.js was used to calculate and display real-time data to show when trains were set to arrive.  
